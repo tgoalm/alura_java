@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Principal",
+            "request": "launch",
+            "mainClass": "br.com.alura.screenmatch.Principal.Principal",
+            "projectName": "alura_java_ad8a9af"
+        },
+        {
+            "type": "java",
+            "name": "PrincipalComBusca",
+            "request": "launch",
+            "mainClass": "br.com.alura.screenmatch.Principal.PrincipalComBusca",
+            "projectName": "alura_java_ad8a9af"
+        },
+        {
+            "type": "java",
+            "name": "PrincipalComListas",
+            "request": "launch",
+            "mainClass": "br.com.alura.screenmatch.Principal.PrincipalComListas",
+            "projectName": "alura_java_ad8a9af"
+        }
+    ]
+}

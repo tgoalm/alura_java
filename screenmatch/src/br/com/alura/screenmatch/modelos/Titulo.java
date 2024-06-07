@@ -1,5 +1,7 @@
 package br.com.alura.screenmatch.modelos;
 
+import br.com.alura.screenmatch.excessao.ErroDeConversaoDoAnoExeception;
+
 public class Titulo implements Comparable<Titulo>{
     private String nome;
     private int anoDeLancamento;
@@ -12,6 +14,15 @@ public class Titulo implements Comparable<Titulo>{
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
     }
+    public Titulo(TituloOmdb tituloOmdb) {
+        this.nome = tituloOmdb.title();
+        if(tituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDoAnoExeception("Ano com mais de 4 caracteres.");
+        }
+        this.anoDeLancamento = converteStringParaInt(tituloOmdb.year());
+        this.duracaoEmMinutos = converteStringParaInt(tituloOmdb.runtime());
+    }
+
     public int getTotalDeAvaliacoes() {
         return totalDeAvaliacoes;
     }
@@ -65,8 +76,23 @@ public class Titulo implements Comparable<Titulo>{
     public double pegaMediaDasAvaliacoes() {
         return somaDasAvaliacoes/totalDeAvaliacoes;
     }
+
     @Override
     public int compareTo(Titulo titulo) {
         return this.getNome().compareTo(titulo.getNome());
+    }
+
+    private int converteStringParaInt(String texto) {
+        if(texto != "") {
+            // Remove os caracteres não numéricos
+            String parteNumerica = texto.replaceAll("[^0-9]", "");
+            // Converte a string resultante para um inteiro
+            return Integer.parseInt(parteNumerica);
+        } 
+        return 0;
+    }
+
+    public String toString() {
+        return "(Filme: " + this.getNome() + " (" + this.getAnoDeLancamento() + "), duração: " + this.getDuracaoEmMinutos() + " minutos.)";
     }
 }
